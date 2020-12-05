@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './../../modules/dashboard/dashboard.component';
 import { DefaultComponent } from './default.component';
 import { PostsComponent } from './../../modules/posts/posts.component';
+import { SharedModule } from './../../shared/shared/shared.module';
 @NgModule({
   declarations: [
     DefaultComponent,
@@ -12,7 +13,8 @@ import { PostsComponent } from './../../modules/posts/posts.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports: [
   ]
