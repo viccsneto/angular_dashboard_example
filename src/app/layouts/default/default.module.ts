@@ -5,6 +5,8 @@ import { DashboardComponent } from './../../modules/dashboard/dashboard.componen
 import { DefaultComponent } from './default.component';
 import { PostsComponent } from './../../modules/posts/posts.component';
 import { SharedModule } from './../../shared/shared/shared.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 @NgModule({
   declarations: [
     DefaultComponent,
@@ -14,7 +16,8 @@ import { SharedModule } from './../../shared/shared/shared.module';
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    MatSidenavModule,
   ],
   exports: [
   ]
