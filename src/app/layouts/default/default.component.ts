@@ -1,3 +1,4 @@
+import { SidebarComponent } from './../../shared/components/sidebar/sidebar.component';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultComponent implements OnInit {
 
+  siderBarOpen = true;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleSideBar() {
+    this.siderBarOpen = !this.siderBarOpen;
   }
 }
