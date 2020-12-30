@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import HC_Exporting from 'highcharts/modules/exporting';
 
@@ -8,6 +8,12 @@ import HC_Exporting from 'highcharts/modules/exporting';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
+
+  @Input() label: string;
+  @Input() total: string;
+  @Input() percentage: string;
+
+
 
   Highcharts = Highcharts;
   chartOptions = {};
