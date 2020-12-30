@@ -1,3 +1,4 @@
+import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,6 +8,7 @@ import { DashboardComponent } from './../../modules/dashboard/dashboard.componen
 import { DefaultComponent } from './default.component';
 import { PostsComponent } from './../../modules/posts/posts.component';
 import { SharedModule } from './../../shared/shared/shared.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { SharedModule } from './../../shared/shared/shared.module';
     SharedModule,
     MatSidenavModule,
     MatDividerModule,
+    FlexLayoutModule,
+    MatCardModule,
   ],
   exports: [
   ]

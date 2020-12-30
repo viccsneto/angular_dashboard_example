@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-
+import HC_Exporting from 'highcharts/modules/exporting';
 @Component({
   selector: 'app-widget-area',
   templateUrl: './area.component.html',
@@ -18,9 +18,6 @@ export class AreaComponent implements OnInit {
       },
       title: {
         text: 'Historic and Estimated Worldwide Population Growth by Region',
-      },
-      subtitle: {
-        text: 'Source: Wikipedia.org',
       },
       xAxis: {
         categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
@@ -43,16 +40,8 @@ export class AreaComponent implements OnInit {
         split: true,
         valueSuffix: ' millions',
       },
-      plotOptions: {
-        area: {
-          stacking: 'normal',
-          lineColor: '#666666',
-          lineWidth: 1,
-          marker: {
-            lineWidth: 1,
-            lineColor: '#666666',
-          },
-        },
+      exporting: {
+        enabled: true
       },
       series: [
         {
@@ -77,5 +66,7 @@ export class AreaComponent implements OnInit {
         },
       ],
     };
+
+    HC_Exporting(Highcharts);
   }
 }

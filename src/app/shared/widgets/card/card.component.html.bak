@@ -1,0 +1,6 @@
+<highcharts-chart
+  [Highcharts]="Highcharts"
+  [options]="chartOptions"
+  class='area-widget'
+>
+</highcharts-chart>
