@@ -27,17 +27,26 @@ export class CardComponent implements OnInit {
         text: null
       },
       xAxis: {
-        enabled: false
+        labels: {
+          enabled: false
+        },
+        title: {
+          text: null,
+        },
+        startOnTick: false,
+        endOnTick: false,
+        tickOptions: [],
       },
       yAxis: {
-        title: {
-          text: 'Billions',
-        },
         labels: {
-          formatter: function () {
-            return this.value / 1000;
-          },
+          enabled: false
         },
+        title: {
+          text: null,
+        },
+        startOnTick: false,
+        endOnTick: false,
+        tickOptions: [],
       },
       tooltip: {
         split: true,
@@ -45,6 +54,9 @@ export class CardComponent implements OnInit {
       },
       exporting: {
         enabled: false
+      },
+      credits: {
+        enabled: false,
       },
       legend: {
         enabled: false

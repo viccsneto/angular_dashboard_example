@@ -40,6 +40,9 @@ export class AreaComponent implements OnInit {
         split: true,
         valueSuffix: ' millions',
       },
+      credits: {
+        enabled: false,
+      },
       exporting: {
         enabled: true
       },
