@@ -9,6 +9,7 @@ import { DefaultComponent } from './default.component';
 import { PostsComponent } from './../../modules/posts/posts.component';
 import { SharedModule } from './../../shared/shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DashboardService } from './../../modules/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule,
     MatCardModule,
   ],
-  exports: [
+  providers: [
+    DashboardService
   ]
 })
 export class DefaultModule { }

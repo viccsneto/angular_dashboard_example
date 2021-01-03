@@ -12,6 +12,7 @@ export class CardComponent implements OnInit {
   @Input() label: string;
   @Input() total: string;
   @Input() percentage: string;
+  @Input() data;
 
 
 
@@ -56,7 +57,7 @@ export class CardComponent implements OnInit {
       },
       tooltip: {
         split: true,
-        valueSuffix: ' millions',
+        outside: true,
       },
       exporting: {
         enabled: false
@@ -67,15 +68,15 @@ export class CardComponent implements OnInit {
       legend: {
         enabled: false
       },
-      series: [
-        {
-          name: 'Series 1',
-          data: [71, 78, 39, 66],
-        },
-      ],
+      series: this.data,
     };
 
     HC_Exporting(this.Highcharts);
-  }
 
+    setTimeout(() => {
+      window.dispatchEvent(
+        new Event('resize')
+      );
+    }, 300);
+  }
 }
