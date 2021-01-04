@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dasboard": {
+    "dashboard": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/dasboard",
+            "outputPath": "dist/dashboard",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "dasboard:build"
+            "browserTarget": "dashboard:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "dasboard:build:production"
+              "browserTarget": "dashboard:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dasboard:build"
+            "browserTarget": "dashboard:build"
           }
         },
         "test": {
@@ -116,16 +116,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "dasboard:serve"
+            "devServerTarget": "dashboard:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "dasboard:serve:production"
+              "devServerTarget": "dashboard:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "dasboard"
+  "defaultProject": "dashboard"
 }
