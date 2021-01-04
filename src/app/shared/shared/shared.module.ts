@@ -19,6 +19,8 @@ import { CardComponent } from './../widgets/card/card.component';
 import { PieComponent } from './../widgets/pie/pie.component';
 
 import { HighchartsChartModule } from 'highcharts-angular';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     RouterModule,
     HighchartsChartModule,
     MatCardModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   exports: [
     HeaderComponent,
