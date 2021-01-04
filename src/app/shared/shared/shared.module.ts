@@ -1,3 +1,4 @@
+import { TableComponent } from './../widgets/table/table.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -27,6 +28,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     AreaComponent,
     CardComponent,
     PieComponent,
+    TableComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +43,14 @@ import { HighchartsChartModule } from 'highcharts-angular';
     HighchartsChartModule,
     MatCardModule,
   ],
-  exports: [HeaderComponent, FooterComponent, SidebarComponent, AreaComponent, CardComponent, PieComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    AreaComponent,
+    CardComponent,
+    PieComponent,
+    TableComponent,
+  ],
 })
 export class SharedModule {}
