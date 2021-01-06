@@ -21,7 +21,7 @@ import { PieComponent } from './../widgets/pie/pie.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { NgxEchartsModule } from 'ngx-echarts';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -45,7 +45,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     HighchartsChartModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   exports: [
     HeaderComponent,

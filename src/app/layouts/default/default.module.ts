@@ -10,7 +10,7 @@ import { PostsComponent } from './../../modules/posts/posts.component';
 import { SharedModule } from './../../shared/shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardService } from './../../modules/dashboard.service';
-
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [
@@ -26,6 +26,10 @@ import { DashboardService } from './../../modules/dashboard.service';
     MatDividerModule,
     FlexLayoutModule,
     MatCardModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
+
   ],
   providers: [
     DashboardService
