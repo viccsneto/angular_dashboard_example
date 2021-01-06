@@ -11,6 +11,7 @@ import { SharedModule } from './../../shared/shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardService } from './../../modules/dashboard.service';
 
+
 @NgModule({
   declarations: [
     DefaultComponent,
