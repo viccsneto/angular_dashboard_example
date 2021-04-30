@@ -37,3 +37,7 @@
     <app-widget-pie [data]="pie"></app-widget-pie>
   </div>
 </div>
+
+<mat-card>
+  <app-threejscanvas (init)="initialize3DCanvas($event)" (update)="update3DCanvas($event)" style="width:100%; height: 100%;"></app-threejscanvas>
+</mat-card>

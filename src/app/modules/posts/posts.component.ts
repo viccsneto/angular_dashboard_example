@@ -34,8 +34,8 @@ export class PostsComponent implements OnInit {
   update3DCanvas(THREE)
   {
     //console.log("update3DCanvas", THREE);
-    this.mesh.rotation.x += 0.01;
-    this.mesh.rotation.y += 0.02;
+    this.mesh.rotation.x += 0.1 * THREE.elapsedTime;
+    this.mesh.rotation.y += 0.2 * THREE.elapsedTime;
 
   }
 }

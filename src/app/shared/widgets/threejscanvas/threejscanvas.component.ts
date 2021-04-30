@@ -15,6 +15,7 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit {
   public scene:any;
   public camera:any;
   public renderer:any;
+  public clock: any;
   constructor(private renderer2:Renderer2
   ) {
 
@@ -27,6 +28,7 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit {
 
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize( window.innerWidth, window.innerHeight);
+    this.clock = new THREE.Clock();
   }
 
   ngAfterViewInit() {
@@ -38,8 +40,7 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit {
   _animate() {
     requestAnimationFrame(() => this._animate());
 
-
-    this.update.emit({...THREE, scene:this.scene});
+    this.update.emit({...THREE, scene:this.scene, elapsedTime: this.clock.getDelta()});
     this.renderer.render( this.scene, this.camera );
   }
 
