@@ -1,6 +1,7 @@
 import { element } from 'protractor';
 import { Component, ElementRef, OnInit, Renderer2, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import * as THREE from "three";
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 @Component({
   selector: 'app-threejscanvas',
@@ -26,24 +27,34 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit {
     this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000);
     this.camera.position.z = 1000;
 
-    this.renderer = new THREE.WebGLRenderer();
+    this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize( window.innerWidth, window.innerHeight);
     this.clock = new THREE.Clock();
   }
 
   ngAfterViewInit() {
     this.renderer2.appendChild(this.threejscanvas.nativeElement, this.renderer.domElement);
-    this.init.emit({...THREE, scene:this.scene});
+    this.init.emit(this.buildTHREEObject());
     this._animate();
   }
 
   _animate() {
     requestAnimationFrame(() => this._animate());
 
-    this.update.emit({...THREE, scene:this.scene, elapsedTime: this.clock.getDelta()});
+    this.update.emit(this.buildTHREEObject());
     this.renderer.render( this.scene, this.camera );
   }
 
+  private buildTHREEObject()
+  {
+    return {...THREE,
+      camera: this.camera,
+      scene:this.scene,
+      elapsedTime: this.clock.getDelta(),
+      renderer: this.renderer,
+      OrbitControls
+    }
+  }
 
 
 }

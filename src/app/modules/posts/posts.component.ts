@@ -13,6 +13,9 @@ export class PostsComponent implements OnInit {
   geometry: any;
   material: any;
   mesh:any;
+  light1:any;
+  light2:any;
+  light3:any;
   ngOnInit(): void {
     this.all_options.push(this.dashboardService.NGXECharts1());
     this.all_options.push(this.dashboardService.NGXECharts2());
@@ -23,11 +26,33 @@ export class PostsComponent implements OnInit {
   initialize3DCanvas(THREE)
   {
     //console.log("initialize3DCanvas", THREE);
-    this.geometry = new THREE.BoxGeometry( 200, 200, 200 );
-    this.material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
-
+    this.geometry = new THREE.TorusKnotGeometry( 50, 10, 200, 32 )
+    this.material = new THREE.MeshPhongMaterial( { color: 0xcfcfcf} );
     this.mesh = new THREE.Mesh( this.geometry, this.material );
+    this.mesh.scale.x = 5;
+    this.mesh.scale.y = 5;
+    this.mesh.scale.z = 5;
+    this.light1 = new THREE.PointLight( 0xff0000, 1, 2000 )
+    this.light1.position.set( 50, 200, 30 );
+    this.light2 = new THREE.PointLight( 0x0000ff, 10, 2000 )
+    this.light2.position.set( 50, 200, 30 );
+
+    this.light3 = new THREE.PointLight( 0xffffff, 10, 2000 )
+    this.light3.position.set( 150, -300, 30 );
+
+    THREE.scene.add(this.light1);
+    this.mesh.add(this.light2);
     THREE.scene.add( this.mesh );
+    THREE.geoFloor = new THREE.BoxGeometry( 2000, 0.1, 2000 );
+    THREE.matStdFloor = new THREE.MeshStandardMaterial( { color: 0x808080, roughness: 0.5, metalness: 1 } );
+		THREE.mshStdFloor = new THREE.Mesh( THREE.geoFloor, THREE.matStdFloor );
+    THREE.mshStdFloor.position.y -= 500;
+		THREE.scene.add( THREE.mshStdFloor );
+
+    const controls = new THREE.OrbitControls( THREE.camera, THREE.renderer.domElement );
+    controls.target.copy( this.mesh.position );
+		controls.update()
+
 
   }
 
