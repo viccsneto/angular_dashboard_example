@@ -60,7 +60,7 @@ import { ThreejscanvasComponent } from '../widgets/threejscanvas/threejscanvas.c
     CardComponent,
     PieComponent,
     TableComponent,
-    ThreejscanvasComponent
+    ThreejscanvasComponent,
   ],
 })
 export class SharedModule {}

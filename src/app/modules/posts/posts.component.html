@@ -1,5 +1,5 @@
 <mat-card>
-  <app-threejscanvas></app-threejscanvas>
+  <app-threejscanvas (init)="initialize3DCanvas($event)" (update)="update3DCanvas($event)" style="width:100%; height: 100%;"></app-threejscanvas>
 </mat-card>
 <div *ngFor="let options of all_options">
   <mat-card>

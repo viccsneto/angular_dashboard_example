@@ -1,5 +1,5 @@
 import { element } from 'protractor';
-import { Component, ElementRef, OnInit, Renderer2, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import * as THREE from "three";
 
 @Component({
@@ -9,48 +9,37 @@ import * as THREE from "three";
 })
 export class ThreejscanvasComponent implements OnInit, AfterViewInit {
   @ViewChild('threejscanvas', { static: false }) threejscanvas: ElementRef;
+  @Output() init: EventEmitter<any>  = new EventEmitter();
+  @Output() update: EventEmitter<any> = new EventEmitter();
 
-  scene:any;
-  camera:any;
-  renderer:any;
-  geometry:any;
-  material:any;
-  mesh:any;
-
+  public scene:any;
+  public camera:any;
+  public renderer:any;
   constructor(private renderer2:Renderer2
   ) {
 
   }
 
-
-
   ngOnInit(): void {
     this.scene = new THREE.Scene();
-
-    this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+    this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000);
     this.camera.position.z = 1000;
 
-    this.geometry = new THREE.BoxGeometry( 200, 200, 200 );
-    this.material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
-
-    this.mesh = new THREE.Mesh( this.geometry, this.material );
-    this.scene.add( this.mesh );
-
     this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setSize( window.innerWidth, window.innerHeight );
+    this.renderer.setSize( window.innerWidth, window.innerHeight);
   }
 
   ngAfterViewInit() {
     this.renderer2.appendChild(this.threejscanvas.nativeElement, this.renderer.domElement);
-    this.animate();
+    this.init.emit({...THREE, scene:this.scene});
+    this._animate();
   }
 
-  animate() {
-    requestAnimationFrame(() => this.animate());
+  _animate() {
+    requestAnimationFrame(() => this._animate());
 
-    this.mesh.rotation.x += 0.01;
-    this.mesh.rotation.y += 0.02;
 
+    this.update.emit({...THREE, scene:this.scene});
     this.renderer.render( this.scene, this.camera );
   }
 
