@@ -11,8 +11,12 @@ export class PostsComponent implements OnInit {
   all_options = [];
   constructor(private dashboardService: DashboardService) {}
   geometry: any;
+  wiregeometry: any;
   material: any;
+  wirematerial: any;
   mesh:any;
+  wiremesh:any;
+
   light1:any;
   light2:any;
   light3:any;
@@ -27,8 +31,13 @@ export class PostsComponent implements OnInit {
   {
     //console.log("initialize3DCanvas", THREE);
     this.geometry = new THREE.TorusKnotGeometry( 50, 10, 200, 32 )
+    this.wiregeometry = new THREE.TorusKnotGeometry( 50, 10.15, 200, 32 )
     this.material = new THREE.MeshPhongMaterial( { color: 0xcfcfcf} );
+    this.wirematerial = new THREE.MeshPhongMaterial( { color: 0xff0000, wireframe: true} );
+    this.wiremesh = new THREE.Mesh( this.wiregeometry, this.wirematerial );
+
     this.mesh = new THREE.Mesh( this.geometry, this.material );
+    this.mesh.add(this.wiremesh);
     this.mesh.scale.x = 5;
     this.mesh.scale.y = 5;
     this.mesh.scale.z = 5;
