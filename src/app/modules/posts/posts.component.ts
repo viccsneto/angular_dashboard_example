@@ -10,16 +10,6 @@ export class PostsComponent implements OnInit {
 
   all_options = [];
   constructor(private dashboardService: DashboardService) {}
-  geometry: any;
-  wiregeometry: any;
-  material: any;
-  wirematerial: any;
-  mesh:any;
-  wiremesh:any;
-
-  light1:any;
-  light2:any;
-  light3:any;
   ngOnInit(): void {
     this.all_options.push(this.dashboardService.NGXECharts1());
     this.all_options.push(this.dashboardService.NGXECharts2());
@@ -30,37 +20,37 @@ export class PostsComponent implements OnInit {
   initialize3DCanvas(THREE)
   {
     //console.log("initialize3DCanvas", THREE);
-    this.geometry = new THREE.TorusKnotGeometry( 50, 10, 200, 32 )
-    this.wiregeometry = new THREE.TorusKnotGeometry( 50, 10.15, 200, 32 )
-    this.material = new THREE.MeshPhongMaterial( { color: 0xcfcfcf} );
-    this.wirematerial = new THREE.MeshPhongMaterial( { color: 0xff0000, wireframe: true} );
-    this.wiremesh = new THREE.Mesh( this.wiregeometry, this.wirematerial );
+    THREE.geometry = new THREE.TorusKnotGeometry( 50, 10, 200, 32 )
+    THREE.wiregeometry = new THREE.TorusKnotGeometry( 50, 10.15, 200, 32 )
+    THREE.material = new THREE.MeshPhongMaterial( { color: 0xcfcfcf} );
+    THREE.wirematerial = new THREE.MeshPhongMaterial( { color: 0xff0000, wireframe: true} );
+    THREE.wiremesh = new THREE.Mesh( THREE.wiregeometry, THREE.wirematerial );
 
-    this.mesh = new THREE.Mesh( this.geometry, this.material );
-    this.mesh.add(this.wiremesh);
-    this.mesh.scale.x = 5;
-    this.mesh.scale.y = 5;
-    this.mesh.scale.z = 5;
-    this.light1 = new THREE.PointLight( 0xff0000, 1, 2000 )
-    this.light1.position.set( 50, 200, 30 );
-    this.light2 = new THREE.PointLight( 0x0000ff, 10, 2000 )
-    this.light2.position.set( 50, 200, 30 );
+    THREE.mesh = new THREE.Mesh( THREE.geometry, THREE.material );
+    THREE.mesh.add(THREE.wiremesh);
+    THREE.mesh.scale.x = 5;
+    THREE.mesh.scale.y = 5;
+    THREE.mesh.scale.z = 5;
+    THREE.light1 = new THREE.PointLight( 0xff0000, 1, 2000 )
+    THREE.light1.position.set( 50, 200, 30 );
+    THREE.light2 = new THREE.PointLight( 0x0000ff, 10, 2000 )
+    THREE.light2.position.set( 50, 200, 30 );
 
-    this.light3 = new THREE.PointLight( 0xffffff, 10, 2000 )
-    this.light3.position.set( 150, -300, 30 );
+    THREE.light3 = new THREE.PointLight( 0xffffff, 10, 2000 )
+    THREE.light3.position.set( 150, -300, 30 );
 
-    THREE.scene.add(this.light1);
-    this.mesh.add(this.light2);
-    THREE.scene.add( this.mesh );
+    THREE.scene.add(THREE.light1);
+    THREE.mesh.add(THREE.light2);
+    THREE.scene.add( THREE.mesh );
     THREE.geoFloor = new THREE.BoxGeometry( 2000, 0.1, 2000 );
     THREE.matStdFloor = new THREE.MeshStandardMaterial( { color: 0x808080, roughness: 0.5, metalness: 1 } );
 		THREE.mshStdFloor = new THREE.Mesh( THREE.geoFloor, THREE.matStdFloor );
     THREE.mshStdFloor.position.y -= 500;
 		THREE.scene.add( THREE.mshStdFloor );
 
-    const controls = new THREE.OrbitControls( THREE.camera, THREE.renderer.domElement );
-    controls.target.copy( this.mesh.position );
-		controls.update()
+    THREE.controls = new THREE.OrbitControls( THREE.camera, THREE.renderer.domElement );
+    THREE.controls.target.copy( THREE.mesh.position );
+		THREE.controls.update()
 
 
   }
@@ -68,8 +58,8 @@ export class PostsComponent implements OnInit {
   update3DCanvas(THREE)
   {
     //console.log("update3DCanvas", THREE);
-    this.mesh.rotation.x += 0.1 * THREE.elapsedTime;
-    this.mesh.rotation.y += 0.2 * THREE.elapsedTime;
+    THREE.mesh.rotation.x += 0.1 * THREE.elapsedTime;
+    THREE.mesh.rotation.y += 0.2 * THREE.elapsedTime;
 
   }
 }

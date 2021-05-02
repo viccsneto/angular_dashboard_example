@@ -17,44 +17,44 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit {
   public camera:any;
   public renderer:any;
   public clock: any;
+  private THREE: any;
   constructor(private renderer2:Renderer2
   ) {
 
   }
 
   ngOnInit(): void {
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000);
-    this.camera.position.z = 1000;
-
-    this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setSize( window.innerWidth, window.innerHeight);
-    this.clock = new THREE.Clock();
   }
 
   ngAfterViewInit() {
-    this.renderer2.appendChild(this.threejscanvas.nativeElement, this.renderer.domElement);
-    this.init.emit(this.buildTHREEObject());
+    this.buildTHREEObject();
+    this.renderer2.appendChild(this.threejscanvas.nativeElement, this.THREE.renderer.domElement);
+
+    this.clock = new this.THREE.Clock();
+    this.init.emit(this.THREE);
     this._animate();
   }
 
   _animate() {
     requestAnimationFrame(() => this._animate());
 
-    this.update.emit(this.buildTHREEObject());
-    this.renderer.render( this.scene, this.camera );
+    this.update.emit({...this.THREE, elapsedTime: this.clock.getDelta()});
+    this.THREE.renderer.render( this.THREE.scene, this.THREE.camera );
   }
 
   private buildTHREEObject()
   {
-    return {...THREE,
-      camera: this.camera,
-      scene:this.scene,
-      elapsedTime: this.clock.getDelta(),
-      renderer: this.renderer,
+    this.THREE = {
+      ...THREE,
+      scene: new THREE.Scene(),
+      camera: new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000),
+      elapsedTime: 0,
       OrbitControls
-    }
+    };
+
+    this.THREE.camera.position.z = 1000;
+    this.THREE.renderer = new THREE.WebGLRenderer({ antialias: true });
+    this.THREE.renderer.setSize( window.innerWidth, window.innerHeight);
+    return this.THREE;
   }
-
-
 }
