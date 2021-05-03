@@ -1,5 +1,5 @@
 import { element } from 'protractor';
-import { Component, ElementRef, OnInit, Renderer2, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, AfterViewInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import * as THREE from "three";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
@@ -8,7 +8,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
   templateUrl: './threejscanvas.component.html',
   styleUrls: ['./threejscanvas.component.scss']
 })
-export class ThreejscanvasComponent implements OnInit, AfterViewInit {
+export class ThreejscanvasComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('threejscanvas', { static: false }) threejscanvas: ElementRef;
   @Output() init: EventEmitter<any>  = new EventEmitter();
   @Output() update: EventEmitter<any> = new EventEmitter();
@@ -18,6 +18,7 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit {
   public renderer:any;
   public clock: any;
   private THREE: any;
+  private _animationFrameRequestID = 0;
   constructor(private renderer2:Renderer2
   ) {
 
@@ -36,7 +37,7 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit {
   }
 
   _animate() {
-    requestAnimationFrame(() => this._animate());
+    this._animationFrameRequestID = requestAnimationFrame(() => this._animate());
 
     this.update.emit({...this.THREE, elapsedTime: this.clock.getDelta()});
     this.THREE.renderer.render( this.THREE.scene, this.THREE.camera );
@@ -56,5 +57,10 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit {
     this.THREE.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.THREE.renderer.setSize( window.innerWidth, window.innerHeight);
     return this.THREE;
+  }
+
+  ngOnDestroy()
+  {
+    window.cancelAnimationFrame(this._animationFrameRequestID);
   }
 }
