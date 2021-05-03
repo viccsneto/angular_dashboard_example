@@ -36,24 +36,26 @@ export class DashboardComponent implements OnInit {
     THREE.geometry = new  THREE.IcosahedronGeometry( 200, 1 )
     THREE.material = new THREE.MeshBasicMaterial( { color: 0xff00ff, wireframe: true } );
     THREE.material2 = new THREE.MeshBasicMaterial( { color: 0xffff00, wireframe: true } );
-    THREE.mesh = new THREE.Mesh( THREE.geometry, THREE.material );
+    THREE.mesh1 = new THREE.Mesh( THREE.geometry, THREE.material );
     THREE.mesh2 = new THREE.Mesh( THREE.geometry, THREE.material2 );
     THREE.mesh2.scale.x = 0.5;
     THREE.mesh2.scale.y = 0.5;
     THREE.mesh2.scale.z = 0.5;
 
-    THREE.scene.add( THREE.mesh );
+    THREE.scene.add( THREE.mesh1 );
     THREE.scene.add( THREE.mesh2 );
+
+
+    THREE.controls = new THREE.CameraControls( THREE.camera, THREE.renderer.domElement );
+    THREE.controls.target.copy( THREE.mesh2.position );
+		THREE.controls.update()
 
   }
 
   update3DCanvas(THREE)
   {
-    //console.log("update3DCanvas", THREE);
-    //THREE.mesh.rotation.x +=  0.5 * THREE.elapsedTime;
-    THREE.mesh.rotation.y -=  0.2 * THREE.elapsedTime;
+    THREE.mesh1.rotation.y -= 0.2 * THREE.elapsedTime;
     THREE.mesh2.rotation.y += 0.5 * THREE.elapsedTime;
-
   }
 
 }

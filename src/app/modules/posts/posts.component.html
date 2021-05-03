@@ -1,6 +1,13 @@
 <mat-card>
-  <app-threejscanvas (init)="initialize3DCanvas($event)" (update)="update3DCanvas($event)" style="width:100%; height: 100%;"></app-threejscanvas>
+    <div class="Canvas3D">
+      <app-threejscanvas (init)="initialize3DCanvas($event)" (update)="update3DCanvas($event)"></app-threejscanvas>
+    </div>
 </mat-card>
+
+<br>
+<mat-divider></mat-divider>
+<br>
+
 <div *ngFor="let options of all_options">
   <mat-card>
     <div echarts [options]="options" class="demo-chart"></div>
