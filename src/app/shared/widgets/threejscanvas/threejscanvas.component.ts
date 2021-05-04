@@ -1,6 +1,5 @@
-import { element } from 'protractor';
 import { Component, ElementRef, OnInit, Renderer2, ViewChild, AfterViewInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import * as THREE from "three";
+import * as THREE from 'three';
 import { CameraControls } from 'three/examples/jsm/controls/experimental/CameraControls.js';
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { FlyControls } from 'three/examples/jsm/controls/FlyControls.js';
@@ -22,8 +21,8 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit, OnDestroy 
   private _boundingClientRect = {width: 1, height: 1};
 
   constructor(
-    private elementRef:ElementRef,
-    private renderer2:Renderer2
+    private elementRef: ElementRef,
+    private renderer2: Renderer2
   ) {
 
   }
