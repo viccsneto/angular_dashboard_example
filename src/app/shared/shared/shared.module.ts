@@ -22,7 +22,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { ThreejscanvasComponent } from '../widgets/threejscanvas/threejscanvas.component';
+import { AS3DComponent } from '../widgets/as3d/AS3D.component';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -32,7 +32,7 @@ import { ThreejscanvasComponent } from '../widgets/threejscanvas/threejscanvas.c
     CardComponent,
     PieComponent,
     TableComponent,
-    ThreejscanvasComponent,
+    AS3DComponent,
   ],
   imports: [
     CommonModule,
@@ -60,7 +60,7 @@ import { ThreejscanvasComponent } from '../widgets/threejscanvas/threejscanvas.c
     CardComponent,
     PieComponent,
     TableComponent,
-    ThreejscanvasComponent,
+    AS3DComponent,
   ],
 })
 export class SharedModule {}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ThreejscanvasComponent } from 'src/app/shared/widgets/threejscanvas/threejscanvas.component';
+import { AS3DComponent } from 'src/app/shared/widgets/as3d/AS3D.component';
 import { DashboardService } from '../dashboard.service';
 
 @Component({

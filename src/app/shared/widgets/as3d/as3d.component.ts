@@ -6,11 +6,11 @@ import { FlyControls } from 'three/examples/jsm/controls/FlyControls.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 @Component({
-  selector: 'app-threejscanvas',
-  templateUrl: './threejscanvas.component.html',
-  styleUrls: ['./threejscanvas.component.scss']
+  selector: 'as3d',
+  templateUrl: './as3d.component.html',
+  styleUrls: ['./as3d.component.scss']
 })
-export class ThreejscanvasComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AS3DComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('threejscanvas', { static: false }) threejscanvas: ElementRef;
   @Output() init: EventEmitter<any>  = new EventEmitter();
   @Output() update: EventEmitter<any> = new EventEmitter();
@@ -45,7 +45,6 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit, OnDestroy 
   ngAfterViewInit() {
     this.updateBoundingClientRect();
     this.buildTHREEObject();
-    this.renderer2.appendChild(this.threejscanvas.nativeElement, this._THREE.renderer.domElement);
 
     this._clock = new this._THREE.Clock();
     this.init.emit(this._THREE);
@@ -73,9 +72,8 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit, OnDestroy 
     };
 
     this._THREE.camera.position.z = 1000;
-    this._THREE.renderer = new THREE.WebGLRenderer({ antialias: true });
+    this._THREE.renderer = new THREE.WebGLRenderer({ canvas: this.threejscanvas.nativeElement, antialias: true });
     this._THREE.renderer.setSize( this._boundingClientRect.width, this._boundingClientRect.height);
-    return this._THREE;
   }
 
   ngOnDestroy()

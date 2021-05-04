@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ThreejscanvasComponent } from './threejscanvas.component';
+import { AS3DComponent } from './as3d.component';
 
 describe('ThreejscanvasComponent', () => {
-  let component: ThreejscanvasComponent;
-  let fixture: ComponentFixture<ThreejscanvasComponent>;
+  let component: AS3DComponent;
+  let fixture: ComponentFixture<AS3DComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ThreejscanvasComponent ]
+      declarations: [ AS3DComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ThreejscanvasComponent);
+    fixture = TestBed.createComponent(AS3DComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
