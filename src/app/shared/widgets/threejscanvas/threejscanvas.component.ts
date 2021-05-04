@@ -34,7 +34,7 @@ export class ThreejscanvasComponent implements OnInit, AfterViewInit, OnDestroy 
       element = element.parentElement;
     }
 
-    this._boundingClientRect = this.elementRef.nativeElement.parentElement.getBoundingClientRect();
+    this._boundingClientRect = element.getBoundingClientRect();
     this._boundingClientRect.width = Math.max(this._boundingClientRect.width, 1);
     this._boundingClientRect.height = Math.max(this._boundingClientRect.height, 1);
   }
