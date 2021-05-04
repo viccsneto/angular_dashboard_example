@@ -36,9 +36,6 @@ export class PostsComponent implements OnInit {
     THREE.light2 = new THREE.PointLight( 0x0000ff, 10, 2000 )
     THREE.light2.position.set( 50, 200, 30 );
 
-    THREE.light3 = new THREE.PointLight( 0xffffff, 10, 2000 )
-    THREE.light3.position.set( 150, -300, 30 );
-
     THREE.scene.add(THREE.light1);
     THREE.mesh.add(THREE.light2);
     THREE.scene.add( THREE.mesh );
@@ -51,8 +48,6 @@ export class PostsComponent implements OnInit {
     THREE.controls = new THREE.OrbitControls( THREE.camera, THREE.renderer.domElement );
     THREE.controls.target.copy( THREE.mesh.position );
 		THREE.controls.update()
-
-
   }
 
   update3DCanvas(THREE)
